@@ -20,11 +20,19 @@ class TextAnalyzer:
         words = self.file_contents.split()
         return len(words)
     
-    def count_chars(self):
-        return len(self.file_contents)
+    def count_characters(self):
+        print("Current number of characters are:")
+        counts = {}
+        for char in self.file_contents:
+            char = char.lower()
+            if char not in counts:
+                counts[char] = 1
+            else:
+                counts[char] += 1
+            
+        return counts
 
 if __name__ == '__main__':
     file_path = os.path.join("..", "data", "Sample.txt")
     analyzer = TextAnalyzer(file_path)
-    print(f"Number of words: {analyzer.count_words()}")
-    print(f"Number of characters: {analyzer.count_chars()}")
+    print(analyzer.count_characters())
